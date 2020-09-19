@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="experiment.css">
 	<script type="text/javascript" src="task.js"></script>
         <script type="text/javascript" src="require.js"></script>
-
+         <script type="text/javascript" src="C:\Users\gsudhabala\Desktop\RDIP\LIBRARIES\node_modules\snowball\stemmer\lib\Snowball.min.js"></script>
 	
 <head>
 <body>
@@ -59,13 +59,25 @@
 		var corp = document.getElementById("selectC");
 		var final = document.getElementById("final");
 		var new_types = document.getElementById("new_types");
+                var stemmer = new Snowball('English');
 		
 	   function helo(){
 	    	after_continue.style.display="block";
 	    	new_types.style.display="block";
 	    	sub_b.style.display="block";
 	    }
-	    	
+                  function yay(){
+	    	    s = abs.replace(/(^\s*)|(\s*$)/gi,"");
+	            s = s.replace(/[ ]{2,}/gi," ");
+	            s = s.replace(/\n /,"\n");
+	            stemming(s);
+            }
+	    	function stemming(s){
+	    	stemmer.setCurrent(s); 
+	    	stemmer.stem();
+	    	var a=stemmer.getCurrent();
+	    	unique(a);
+            }
 	    
 	    function unique(str){
 	    	let set = new Set(str.split(' '));
